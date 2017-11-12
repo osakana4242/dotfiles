@@ -334,6 +334,9 @@ NeoBundle 'troydm/easybuffer.vim' " EasyBuffer コマンド.
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'scrooloose/nerdtree' " サイドペイン.
+nnoremap <unique><silent>tt :NERDTreeToggle<CR>
+"隠しファイルをデフォルトで表示.
+let NERDTreeShowHidden = 1
 
 NeoBundle 'Shougo/vimproc.vim', {
 \   'build' : {
