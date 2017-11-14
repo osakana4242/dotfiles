@@ -4,8 +4,6 @@
 " ショートカットキーの一覧
 " http://blog.ruedap.com/2011/01/11/vim-keyboard-shortcut-key
 
-set nocompatible
-
 let isOsTypeWin = has('win32')
 if isOsTypeWin
 	set runtimepath^=$HOME/.vim
@@ -118,7 +116,6 @@ endif
 if isOsTypeWin
 	" Win
 	
-	set nocompatible
 	" source $VIMRUNTIME/mswin.vim
 	behave mswin
 
@@ -164,10 +161,6 @@ else
 	if v:progname =~? "evim"
 		finish
 	endif
-
-	" Use Vim settings, rather than Vi settings (much better!).
-	" This must be first, because it changes other options as a side effect.
-	set nocompatible
 
 	" allow backspacing over everything in insert mode
 	set backspace=indent,eol,start
