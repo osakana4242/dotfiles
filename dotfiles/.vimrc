@@ -67,14 +67,17 @@ set clipboard+=unnamed
 set undodir=~/tmp/vim/undo
 
 " ショートカット登録.
+"
+" 誰がショートカットキーを割り当てているかを確認する方法
+" form: http://blog.ruedap.com/2011/01/11/vim-keyboard-shortcut-key
+" verbose map
+" verbose nmap
+"
 map <C-S-L> zL
 map <C-S-H> zH
-map <C-Tab> :tabn<CR>
-if isOsTypeWin
-	" <C-Tab> が効かないのでその代用.
-	map <S-Tab> :tabn<CR>
-endif
-map <C-S-Tab> :tabp<CR>
+" タブ切り替え.
+nnoremap <C-Tab> gt
+nnoremap <C-S-Tab> gT
 " キャメル.
 map <Leader>c <Plug>(operator-camelize)
 map <Leader>C <Plug>(operator-decamelize)
@@ -116,8 +119,7 @@ if isOsTypeWin
 	" Win
 	
 	set nocompatible
-	source $VIMRUNTIME/vimrc_example.vim
-	source $VIMRUNTIME/mswin.vim
+	" source $VIMRUNTIME/mswin.vim
 	behave mswin
 
 	set diffexpr=MyDiff()
