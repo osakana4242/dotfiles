@@ -16,7 +16,9 @@ else
 	" set fileencodings=iso-2022-jp,sjis,euc-jp,cp932,utf-8
 	set fileencodings=ucs-bom,euc-jp,iso-2022-jp,cp932,utf-8,utf-16,utf-16le
 endif
+
 set ff=unix
+
 " from http://vimblog.hatenablog.com/entry/vimrc_set_recommended_options
 " 画面表示の設定
 
