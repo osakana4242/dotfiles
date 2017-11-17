@@ -313,9 +313,10 @@ NeoBundle 'tsukkee/unite-tag.git'
 
 " http://syotaro.ruhoh.com/posts/20121216-tips-vim-outliner/
 NeoBundle 'Shougo/unite-outline'
+" アウトラインを右側に開く.
+let g:unite_split_rule = 'botright'
 nnoremap <silent> <Space>uo :<C-u>Unite -vertical -no-quit -winwidth=30 outline<CR> - See more at: http://syotaro.ruhoh.com/posts/20121216-tips-vim-outliner/#sthash.pikCL09L.dpuf
 " nnoremap <silent> <Leader>o :<C-u>Unite -vertical -no-quit outline<CR>
-
 
 NeoBundle 'Shougo/neomru.vim'
 "NeoBundle 'Shougo/neosnippet'
@@ -332,6 +333,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'scrooloose/nerdtree' " サイドペイン.
 nnoremap <unique><silent>tt :NERDTreeToggle<CR>
+nnoremap <unique><silent>tf :NERDTreeFind<CR>
 "隠しファイルをデフォルトで表示.
 let NERDTreeShowHidden = 1
 
