@@ -1,4 +1,4 @@
-" osakana4242 -----------------------------------
+" aosakana4242 -----------------------------------
 " echo "start osakana4242"
 
 " ショートカットキーの一覧
@@ -72,9 +72,9 @@ set undodir=~/tmp/vim/undo
 " form: http://blog.ruedap.com/2011/01/11/vim-keyboard-shortcut-key
 " verbose map
 " verbose nmap
-"
-map <C-S-L> zL
-map <C-S-H> zH
+" 横スクロール.
+map <C-l> 1zl
+map <C-h> 1zh
 " タブ切り替え.
 nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
@@ -104,7 +104,8 @@ augroup END  " }}}
 " 最初にdesertを指定しているのはそうしないとなぜかluciusが正し反映されないため.
 if isOsTypeWin
 	colorscheme desert
-	colorscheme lucius
+	" windows git bash 上だと lucius が効かない...
+	"colorscheme lucius
 else
 	colorscheme desert
 	colorscheme lucius
@@ -332,10 +333,12 @@ NeoBundle 'troydm/easybuffer.vim' " EasyBuffer コマンド.
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'scrooloose/nerdtree' " サイドペイン.
-nnoremap <unique><silent>tt :NERDTreeToggle<CR>
-nnoremap <unique><silent>tf :NERDTreeFind<CR>
+nnoremap <silent>tt :NERDTreeToggle<CR>
+nnoremap <silent>tf :NERDTreeFind<CR>
 "隠しファイルをデフォルトで表示.
 let NERDTreeShowHidden = 1
+
+NeoBundle 'stephpy/vim-yaml' " yaml のシタックス.
 
 NeoBundle 'Shougo/vimproc.vim', {
 \   'build' : {
@@ -372,4 +375,3 @@ NeoBundleCheck
 call neobundle#end()
 
 "echo "end NeoBundle"
-"

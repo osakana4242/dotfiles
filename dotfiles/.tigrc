@@ -1,3 +1,4 @@
+# 参考 https://qiita.com/sfus/items/063797a1dd8fdc7d032f
 # main viewの左端にコミットIDを表示する
 set main-view = id date author commit-title:graph=yes,refs=yes
 # デフォルト
@@ -6,4 +7,48 @@ set main-view = id date author commit-title:graph=yes,refs=yes
 # ショートカット.
 bind generic <Ctrl-B> scroll-left
 bind generic <Ctrl-F> scroll-right
+
+# タブサイズ
+set tab-size = 2
+
+# # 空白無視
+# set ignore-space = all
+
+# 空白無視 (status-view では表示するが diff-view では無視する) (W でトグル)
+set ignore-space = at-eol
+
+# 検索時に大文字小文字を無視する (default: false)
+# set ignore-case = true
+
+# 水平分割したウィンドウの下画面サイズを % で指定（行数指定も可）
+# set split-view-height = 80%
+
+# マージ diff を表示する
+set diff-options = -m --first-parent
+
+# マウスを有効にする
+# set mouse = true
+
+# '+行数' の形で Editor に行番号を引数として渡すか
+set editor-line-number = yes
+
+# 差分表示に diff-highlight を使う (要 tig 2.2.1 以降. diff-highlight が $PATH にあること)
+# set diff-highlight = true
+
+# 差分の前後の表示行数（diff-context)を指定 
+set diff-context = 12
+
+# カラー設定
+# diff-view で境界が見やすくなるように変更
+color  diff-header       default magenta
+color  diff-chunk        black   white
+
+# 行数表示をON
+set blob-view-line-number = yes
+set blame-view-line-number = yes
+
+# R で rebase.
+# http://sue445.hatenablog.com/entry/2014/08/07/015811
+bind main    R !git rebase -i %(commit)
+bind diff    R !git rebase -i %(commit)
 

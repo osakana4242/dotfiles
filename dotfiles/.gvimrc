@@ -15,5 +15,5 @@ if has('multi_byte_ime')
   "highlight Cursor   guifg=NONE guibg=#00a000
   "highlight CursorIM guifg=NONE guibg=#ff00ff " 効かない...
 endif
-" echo "loaded gvimrc"
+"echo "loaded gvimrc"
 
