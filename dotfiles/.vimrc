@@ -1,4 +1,4 @@
-" aosakana4242 -----------------------------------
+" osakana4242 -----------------------------------
 " echo "start osakana4242"
 
 " ショートカットキーの一覧
@@ -106,9 +106,11 @@ if isOsTypeWin
 	colorscheme desert
 	" windows git bash 上だと lucius が効かない...
 	"colorscheme lucius
+	colorscheme desert
 else
 	colorscheme desert
 	colorscheme lucius
+	colorscheme desert
 endif
 
 "echo "end osakana4242"
