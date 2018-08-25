@@ -1,0 +1,22 @@
+
+# インサートモードに入ったら読み込む
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1
+hook_add = '''
+	" 起動時に有効化.
+	let g:neocomplete#enable_at_startup = 1
+'''
+
+
+
+# [[plugins]]
+# " NeoBundleLazy 'nosami/Omnisharp', {
+# " \   'autoload': {'filetypes': ['cs']},
+# " \   'build': {
+# " \     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+# " \     'mac': 'xbuild server/OmniSharp.sln',
+# " \     'unix': 'xbuild server/OmniSharp.sln',
+# " \   }
+# " \ }
+# 

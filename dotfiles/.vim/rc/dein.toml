@@ -1,0 +1,112 @@
+#from: https://qiita.com/delphinus/items/00ff2c0ba972c6e41542
+#
+#
+# hook_xxx の種類: https://qiita.com/delphinus/items/cd221a450fd23506e81a
+
+# 基本は github.com のレポジトリーを指定するだけ
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# git clone 後、実行すべきコマンドがある場合はこんな感じ
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
+# # ブランチやタグを指定したいとき
+# [[plugins]]
+# repo = 'delphinus35/typescript-vim'
+# rev  = 'colorize-template-strings'
+# 
+# # 特定の条件で読み込みたいとき
+# [[plugins]]
+# repo = 'elzr/vim-json'
+# if   = '''! has('kaoriya')'''
+# 
+# # 依存関係を指定したいとき
+# [[plugins]]
+# repo    = 'vim-airline/vim-airline'
+# depends = ['vim-airline-themes']
+# 
+# # 依存関係を指定したからと言って、自動でインストールはされない（ここは NeoBundle と違う）
+# [[plugins]]
+# repo = 'vim-airline/vim-airline-themes'
+# 
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+# http://qiita.com/kazu0620/items/d7da3047daed04fc5eba
+[[plugins]]
+repo = 'tsukkee/unite-tag.git'
+
+# http://syotaro.ruhoh.com/posts/20121216-tips-vim-outliner/
+[[plugins]]
+repo = 'Shougo/unite-outline'
+hook_add = '''
+	" アウトラインを右側に開く.
+	let g:unite_split_rule = 'botright'
+	nnoremap <silent> <Space>uo :<C-u>Unite -vertical -no-quit -winwidth=30 outline<CR> - See more at: http://syotaro.ruhoh.com/posts/20121216-tips-vim-outliner/#sthash.pikCL09L.dpuf
+	" nnoremap <silent> <Leader>o :<C-u>Unite -vertical -no-quit outline<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+#[[plugins]]
+#repo = 'Shougo/neosnippet'
+
+#[[plugins]]
+#repo = 'jpalardy/vim-slime'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+##[[plugins]]
+##repo = 'https://bitbucket.org/kovisoft/slimv'
+
+# スネーク, キャメル
+[[plugins]]
+repo = 'tanabe/ToggleCase-vim'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+# スネーク, キャメル
+[[plugins]]
+repo = 'tyru/operator-camelize.vim' 
+
+# EasyBuffer コマンド.
+[[plugins]]
+repo = 'troydm/easybuffer.vim'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'derekwyatt/vim-scala'
+
+# サイドペイン.
+[[plugins]]
+repo = 'scrooloose/nerdtree' 
+hook_add = '''
+	nnoremap <silent>tt :NERDTreeToggle<CR>
+	nnoremap <silent>tf :NERDTreeFind<CR>
+	"隠しファイルをデフォルトで表示.
+	let NERDTreeShowHidden = 1
+'''
+
+# yaml のシタックス.
+[[plugins]]
+repo = 'stephpy/vim-yaml'
+

@@ -125,7 +125,7 @@ if isOsTypeWin
 	behave mswin
 
 	set diffexpr=MyDiff()
-	function MyDiff()
+	function! MyDiff()
 		let opt = '-a --binary '
 		if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
 		if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
@@ -293,87 +293,58 @@ command! -nargs=+ -bang -complete=file Rename let pbnr=fnamemodify(bufname('%'),
 " 	endfunction
 " endif
 
+function! s:dein_init()
+	" from: https://qiita.com/delphinus/items/00ff2c0ba972c6e41542
+	" プラグインが実際にインストールされるディレクトリ
+	let s:dein_dir = expand('~/.cache/dein')
+	" dein.vim 本体
+	let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+	" dein.vim がなければ github から落としてくる
+	if &runtimepath !~# '/dein.vim'
+		if !isdirectory(s:dein_repo_dir)
+			execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+		endif
+		execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+	endif
+
+	" 設定開始
+	if dein#load_state(s:dein_dir)
+		call dein#begin(s:dein_dir)
+
+		" プラグインリストを収めた TOML ファイル
+		" 予め TOML ファイル（後述）を用意しておく
+		let g:rc_dir    = expand('~/.vim/rc')
+		let s:toml      = g:rc_dir . '/dein.toml'
+		let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+		" TOML を読み込み、キャッシュしておく
+		call dein#load_toml(s:toml,      {'lazy': 0})
+		call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+		" 設定終了
+		call dein#end()
+		call dein#save_state()
+	endif
+
+	" もし、未インストールものものがあったらインストール
+	if dein#check_install()
+		call dein#install()
+	endif
+endfunction
+
+call s:dein_init()
+
+
 "-------------------------------------------------------------------------------
 " NeoBundle 
 " from http://qiita.com/puriketu99/items/1c32d3f24cc2919203eb
 " echo "start NeoBundle"
 filetype off
 
-
-set runtimepath+=~/.vim/bundle/neobundle.vim
-call neobundle#begin(expand('~/.vim/bundle/'))
-" neobundle自体をneobundleで管理
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" originalrepos on github
-NeoBundle 'Shougo/neobundle.vim'
-"NeoBundle 'VimClojure'
-"NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-
-" http://qiita.com/kazu0620/items/d7da3047daed04fc5eba
-NeoBundle 'tsukkee/unite-tag.git'
-
-" http://syotaro.ruhoh.com/posts/20121216-tips-vim-outliner/
-NeoBundle 'Shougo/unite-outline'
-" アウトラインを右側に開く.
-let g:unite_split_rule = 'botright'
-nnoremap <silent> <Space>uo :<C-u>Unite -vertical -no-quit -winwidth=30 outline<CR> - See more at: http://syotaro.ruhoh.com/posts/20121216-tips-vim-outliner/#sthash.pikCL09L.dpuf
-" nnoremap <silent> <Leader>o :<C-u>Unite -vertical -no-quit outline<CR>
-
-NeoBundle 'Shougo/neomru.vim'
-"NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'scrooloose/syntastic'
-""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-
-NeoBundle 'tanabe/ToggleCase-vim' " スネーク, キャメル
-NeoBundle 'kana/vim-operator-user'
-NeoBundle 'tyru/operator-camelize.vim' " スネーク, キャメル
-
-NeoBundle 'troydm/easybuffer.vim' " EasyBuffer コマンド.
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'scrooloose/nerdtree' " サイドペイン.
-nnoremap <silent>tt :NERDTreeToggle<CR>
-nnoremap <silent>tf :NERDTreeFind<CR>
-"隠しファイルをデフォルトで表示.
-let NERDTreeShowHidden = 1
-
-NeoBundle 'stephpy/vim-yaml' " yaml のシタックス.
-
-NeoBundle 'Shougo/vimproc.vim', {
-\   'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\   }
-\ }
-
-NeoBundle 'Shougo/neocomplete.vim'
-" neocomplete の設定.
-" 起動時に有効化.
-let g:neocomplete#enable_at_startup = 1
-
-" NeoBundleLazy 'nosami/Omnisharp', {
-" \   'autoload': {'filetypes': ['cs']},
-" \   'build': {
-" \     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
-" \     'mac': 'xbuild server/OmniSharp.sln',
-" \     'unix': 'xbuild server/OmniSharp.sln',
-" \   }
-" \ }
-
 filetype plugin indent on     " required!
 filetype indent on
 syntax on
 
-" 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
-" 毎回聞かれると邪魔な場合もあるので、この設定は任意です。
-NeoBundleCheck
-
-call neobundle#end()
-
 "echo "end NeoBundle"
+"
