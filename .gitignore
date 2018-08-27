@@ -23,3 +23,5 @@ Thumbs.db
 #
 dotfiles/.vim/bundle/
 dotfiles/.vim/.netrwhist
+dotfiles/.vscode/
+
